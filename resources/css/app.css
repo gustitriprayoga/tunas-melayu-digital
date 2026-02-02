@@ -8,7 +8,173 @@
 
 @theme {
     --font-sans:
-        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+        "Outfit", "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+
+    /* Custom Color Variables */
+    --color-neon-cyan: #06b6d4;
+    --color-neon-purple: #8b5cf6;
+    --color-dark-bg: #0f172a;
+}
+
+/* 2. GLOBAL STYLES */
+body {
+    background-color: var(--color-dark-bg);
+    color: #f8fafc;
+    overflow-x: hidden; /* Mencegah scroll samping di HP */
+}
+
+/* 3. CUSTOM UTILITIES (GLASS & NEON) */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-nav {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-glow {
+    text-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+}
+
+.box-glow:hover {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+}
+
+/* 4. ANIMATIONS */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+.bg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: pulse-glow 10s infinite alternate;
+}
+
+/* 5. FLIP CARD 3D */
+.perspective-1000 {
+    perspective: 1000px;
+}
+.transform-style-3d {
+    transform-style: preserve-3d;
+}
+.backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+.group:hover .group-hover\:rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+.glitch-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch {
+    position: relative;
+    color: white;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0b0f19; /* Sesuaikan dengan warna background website */
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 #00ffff;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 #ff00ff;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip: rect(20px, 9999px, 80px, 0);
+    }
+    20% {
+        clip: rect(10px, 9999px, 50px, 0);
+    }
+    40% {
+        clip: rect(60px, 9999px, 100px, 0);
+    }
+    60% {
+        clip: rect(30px, 9999px, 70px, 0);
+    }
+    80% {
+        clip: rect(90px, 9999px, 120px, 0);
+    }
+    100% {
+        clip: rect(50px, 9999px, 90px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(90px, 9999px, 120px, 0);
+    }
+    20% {
+        clip: rect(30px, 9999px, 70px, 0);
+    }
+    40% {
+        clip: rect(60px, 9999px, 100px, 0);
+    }
+    60% {
+        clip: rect(10px, 9999px, 50px, 0);
+    }
+    80% {
+        clip: rect(20px, 9999px, 80px, 0);
+    }
+    100% {
+        clip: rect(80px, 9999px, 110px, 0);
+    }
 }
