@@ -19,6 +19,9 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
+use ShuvroRoy\FilamentSpatieLaravelHealth\FilamentSpatieLaravelHealthPlugin;
+use ShuvroRoy\FilamentSpatieLaravelHealth\Pages\HealthCheckResults as PagesHealthCheckResults;
+use Filament\SpatieLaravelMediaLibraryPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -40,6 +43,9 @@ class AdminPanelProvider extends PanelProvider
                     ->setNavigationGroup('Settings')
                     ->setTitle('General Settings')
                     ->setNavigationLabel('General Settings'),
+                // SpatieLaravelMediaLibraryPlugin::make(),
+                FilamentSpatieLaravelHealthPlugin::make()
+                    ->usingPage(PagesHealthCheckResults::class),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
