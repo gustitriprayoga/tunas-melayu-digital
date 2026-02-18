@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.10.1",
         "pxlrbt/filament-activity-log": "^2.1",
         "pxlrbt/filament-excel": "^3.4",
-        "shuvroroy/filament-spatie-laravel-health": "^3.2"
+        "shuvroroy/filament-spatie-laravel-health": "^3.2",
+        "socialiteproviders/manager": "^4.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
