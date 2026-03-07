@@ -15,31 +15,70 @@ class HomePageForm
     {
         return $schema
             ->components([
-                Section::make('Hero Section')
-                    ->description('Tampilan layar utama website')
+                Section::make('Hero & Call to Action')
+                    ->description('Atur konten utama yang muncul di bagian paling atas website.')
+                    ->icon('heroicon-m-megaphone')
                     ->schema([
-                        TextInput::make('hero_title')->required(),
-                        Textarea::make('hero_subtitle'),
+                        TextInput::make('hero_title')
+                            ->label('Main Title (Glitch)')
+                            ->required()
+                            ->columnSpanFull(),
+                        Textarea::make('hero_subtitle')
+                            ->label('Subtitle Narrative')
+                            ->rows(3)
+                            ->columnSpanFull(),
+                        Grid::make(2)->schema([
+                            TextInput::make('cta_text')
+                                ->label('Button Text')
+                                ->default('Hubungi Kami'),
+                            TextInput::make('cta_link')
+                                ->label('Button Destination (URL)')
+                                ->placeholder('https://...'),
+                        ]),
+                    ])->collapsible(),
 
-                        // Upload Gambar Hero via Spatie Media Library
-                        SpatieMediaLibraryFileUpload::make('hero_bg')
-                            ->label('Background Image')
+                // SECTION 2: METRICS & NUMBERS
+                Section::make('Real-time Metrics')
+                    ->description('Angka-angka statistik yang membuktikan kualitas kerja.')
+                    ->icon('heroicon-m-presentation-chart-line')
+                    ->schema([
+                        Grid::make(3)->schema([
+                            TextInput::make('stats_clients')
+                                ->label('Happy Clients')
+                                ->numeric()
+                                ->prefix('👥')
+                                ->default(0),
+                            TextInput::make('stats_projects')
+                                ->label('Projects Done')
+                                ->numeric()
+                                ->prefix('🚀')
+                                ->default(0),
+                            TextInput::make('stats_years')
+                                ->label('Years Exp')
+                                ->numeric()
+                                ->prefix('⏳')
+                                ->default(0),
+                        ]),
+                    ])->collapsible(),
+
+                // SECTION 3: VIDEO & ASSETS
+                Section::make('Multimedia Assets')
+                    ->description('Video YouTube dan Asset gambar pendukung.')
+                    ->icon('heroicon-m-play-circle')
+                    ->schema([
+                        TextInput::make('video_url')
+                            ->label('YouTube Video URL')
+                            ->url()
+                            ->placeholder('https://www.youtube.com/watch?v=...')
+                            ->helperText('Gunakan link lengkap dari YouTube.'),
+                        SpatieMediaLibraryFileUpload::make('hero_image')
                             ->collection('hero')
                             ->image()
-                            ->imageEditor(),
-
-                        Grid::make(2)->schema([
-                            TextInput::make('cta_text')->label('Teks Tombol'),
-                            TextInput::make('cta_link')->label('Link Tombol'),
-                        ]),
-                    ]),
-
-                Section::make('Statistik Perusahaan')
-                    ->schema([
-                        TextInput::make('stats_clients')->numeric()->label('Total Klien'),
-                        TextInput::make('stats_projects')->numeric()->label('Project Selesai'),
-                        TextInput::make('stats_years')->numeric()->label('Tahun Pengalaman'),
-                    ])->columns(3),
+                            ->disk('public')
+                            ->imageEditor()
+                            ->label('Hero Background/Side Image')
+                            ->columnSpanFull(),
+                    ])->collapsible(),
             ]);
     }
 }

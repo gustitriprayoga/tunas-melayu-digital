@@ -12,12 +12,23 @@ class HomePage extends Model implements HasMedia
 
     protected $guarded = [];
 
-    // Trik agar model ini selalu mengambil ID 1 (Singleton)
-    public static function settings(): self
+    public static function settings()
     {
         return static::firstOrCreate(['id' => 1], [
-            'hero_title' => 'Transformasi Ide Menjadi Realitas Digital',
-            'hero_subtitle' => 'Kami membantu bisnis Anda berkembang dengan teknologi web dan mobile terkini.',
+            'hero_title' => 'NEXT LEVEL DIGITAL',
+            'hero_subtitle' => 'Membangun ekosistem digital masa depan.',
+            'cta_text' => 'Hubungi Kami',
+            'stats_clients' => 0,
+            'stats_projects' => 0,
+            'stats_years' => 0,
         ]);
+    }
+
+    // WAJIB: Tentukan koleksi media dan disk yang digunakan
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('hero')
+            ->useDisk('public') // Pastikan pakai disk public
+            ->singleFile();
     }
 }

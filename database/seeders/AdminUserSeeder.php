@@ -22,9 +22,9 @@ class AdminUserSeeder extends Seeder
         // 1. Buat User Admin
         // Menggunakan firstOrCreate agar aman dijalankan berulang kali (tidak duplikat error)
         $user = User::firstOrCreate(
-            ['email' => 'admin@qag-dev.com'], // Ganti dengan email login Anda
+            ['email' => 'admin@tmd.com'], // Ganti dengan email login Anda
             [
-                'name' => 'QAG Development', // Nama Tampilan
+                'name' => 'Admin TMD 1', // Nama Tampilan
                 'password' => Hash::make('password'), // Ganti password saat production
                 'email_verified_at' => now(),
             ]
