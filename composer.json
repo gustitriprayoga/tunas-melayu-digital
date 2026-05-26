@@ -3,21 +3,21 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "bezhansalleh/filament-shield": "^4.1",
-        "filament/filament": "^4.0",
-        "filament/spatie-laravel-media-library-plugin": "^4.0",
-        "joaopaulolndev/filament-edit-profile": "2.0",
-        "joaopaulolndev/filament-general-settings": "2.0",
+        "blade-ui-kit/blade-heroicons": "^2.7",
+        "blade-ui-kit/blade-icons": "^1.10",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "pxlrbt/filament-activity-log": "^2.1",
-        "pxlrbt/filament-excel": "^3.4",
-        "shuvroroy/filament-spatie-laravel-health": "^3.2",
-        "socialiteproviders/manager": "^4.8"
+        "livewire/livewire": "^3.5",
+        "socialiteproviders/manager": "^4.8",
+        "spatie/laravel-medialibrary": "^11.22",
+        "spatie/laravel-permission": "^7.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -43,8 +43,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan filament:upgrade"
+            "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

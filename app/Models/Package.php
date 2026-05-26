@@ -11,4 +11,9 @@ class Package extends Model
         'features' => 'array',
         'is_popular' => 'boolean',
     ];
+
+    public function categoryRelation()
+    {
+        return $this->belongsTo(PackageCategory::class, 'package_category_id');
+    }
 }

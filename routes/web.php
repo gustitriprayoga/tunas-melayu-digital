@@ -50,9 +50,3 @@ Route::group(['prefix' => 'portfolio'], function () {
 Route::get('/pricing', Pricing::class)->name('pricing');
 
 Route::get('/testimonials', Testimonials::class)->name('testimonials');
-
-
-
-// Halaman Utilitas (Opsional)
-// Misal untuk redirect jika user mengakses link admin yang salah
-Route::redirect('/login', '/admin/login')->name('login');

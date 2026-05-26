@@ -22,6 +22,9 @@ class Home extends Component
 
             // 3. Ambil Portfolio Terbaru
             'portfolios' => Portfolio::latest()->take(4)->get(),
+
+            // 4. Testimonials
+            'testimonials' => \App\Models\Testimonial::latest()->take(6)->get(),
         ]);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-$settings = \Joaopaulolndev\FilamentGeneralSettings\Models\GeneralSetting::first();
+$settings = \App\Models\GeneralSetting::first();
 ?>
 
 <nav x-data="{ mobileMenuOpen: false }"
@@ -12,17 +12,10 @@ $settings = \Joaopaulolndev\FilamentGeneralSettings\Models\GeneralSetting::first
                 wire:navigate class="flex items-center gap-3 group">
                 <div
                     class="relative w-10 h-10 flex items-center justify-center bg-cyan-500/20 rounded-xl border border-cyan-500/50 group-hover:scale-110 transition duration-300 shadow-[0_0_15px_rgba(6,182,212,0.5)]">
-                    @if ($settings && $settings->site_logo)
-                        <img src="{{ Storage::url($settings->site_logo) }}" class="h-8 w-8 object-contain">
-                    @else
-                        <svg class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    @endif
+                    <img src="{{ asset('asset/logo/logo-default.png') }}" class="h-8 w-8 object-contain" alt="Logo">
                 </div>
                 <span class="font-bold text-xl md:text-2xl tracking-wide text-white">
-                    {{ $settings->site_name ?? 'Tunas' }}<span class="text-cyan-400">Digital</span>
+                    Tunas Melayu <span class="text-cyan-400">Digital</span>
                 </span>
             </a>
 

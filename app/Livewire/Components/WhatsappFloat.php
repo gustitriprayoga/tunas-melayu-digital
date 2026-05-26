@@ -3,7 +3,7 @@
 namespace App\Livewire\Components;
 
 use Livewire\Component;
-use Joaopaulolndev\FilamentGeneralSettings\Models\GeneralSetting;
+use App\Models\GeneralSetting;
 
 class WhatsappFloat extends Component
 {

@@ -250,17 +250,25 @@
     {{-- 4. MAP SECTION (CYBERPUNK STYLE) --}}
     {{-- ========================================== --}}
     <section
-        class="h-[400px] w-full relative overflow-hidden grayscale invert brightness-90 contrast-125 border-t border-white/10">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127672.27503733076!2d101.37894372986423!3d0.5097486828452367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ac1a9424750f%3A0x3039d80b220cc30!2sPekanbaru%2C%20Pekanbaru%20City%2C%20Riau!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
+        class="h-[400px] w-full relative overflow-hidden grayscale invert brightness-90 contrast-125 border-t border-white/10"
+        x-data="{ updated: false }"
+        x-on:settings-updated.window="updated = true; setTimeout(() => updated = false, 3000)">
+        
+        @if(isset($settings->more_configs['google_maps_embed']) && $settings->more_configs['google_maps_embed'])
+            {!! $settings->more_configs['google_maps_embed'] !!}
+        @else
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127672.27503733076!2d101.37894372986423!3d0.5097486828452367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ac1a9424750f%3A0x3039d80b220cc30!2sPekanbaru%2C%20Pekanbaru%20City%2C%20Riau!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        @endif
 
         <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center shadow-2xl grayscale-0 invert-0">
-            <span class="text-cyan-400 text-xs font-bold uppercase tracking-widest">Headquarters</span>
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center shadow-2xl grayscale-0 invert-0 transition-all"
+            :class="updated ? 'border-cyan-500 scale-110 shadow-[0_0_30px_rgba(6,182,212,0.3)]' : ''">
+            <span class="text-cyan-400 text-xs font-bold uppercase tracking-widest" x-text="updated ? 'LOCATION UPDATED' : 'Headquarters'"></span>
             <h3 class="text-xl font-bold text-white mt-1">{{ $settings->site_name ?? 'Tunas Melayu Digital' }}</h3>
-            <p class="text-slate-400 text-sm mt-2">Riau, Indonesia</p>
+            <p class="text-slate-400 text-sm mt-2">{{ $settings->office_address ?? 'Riau, Indonesia' }}</p>
         </div>
     </section>
 

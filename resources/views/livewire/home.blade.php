@@ -265,6 +265,34 @@
         </div>
     </section>
 
+    {{-- 6. TESTIMONIALS MARQUEE --}}
+    <section class="py-24 bg-black/40 overflow-hidden border-y border-white/5">
+        <div class="container mx-auto px-6 mb-16 text-center">
+            <h2 class="text-4xl font-black text-white">APA KATA <span class="text-cyan-400">MEREKA?</span></h2>
+        </div>
+        
+        <div class="flex gap-8 animate-marquee-slow whitespace-nowrap">
+            @foreach($testimonials->concat($testimonials) as $testi)
+            <div class="inline-block w-[350px] bg-slate-900/50 border border-white/10 p-8 rounded-3xl backdrop-blur-sm mr-8">
+                <div class="flex items-center gap-4 mb-4">
+                    <img src="{{ $testi->getFirstMediaUrl('avatar') ?: 'https://ui-avatars.com/api/?name='.urlencode($testi->name).'&background=0D8ABC&color=fff' }}" 
+                         class="w-12 h-12 rounded-full border border-cyan-500/30">
+                    <div>
+                        <h4 class="font-bold text-white text-sm">{{ $testi->name }}</h4>
+                        <p class="text-[10px] text-cyan-400 uppercase tracking-widest font-mono">{{ $testi->position }}</p>
+                    </div>
+                </div>
+                <p class="text-slate-400 text-sm whitespace-normal italic">"{{ Str::limit($testi->content, 120) }}"</p>
+                <div class="flex gap-1 mt-4">
+                    @foreach(range(1, $testi->rating) as $i)
+                        <svg class="w-3 h-3 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    @endforeach
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
+
     {{-- CTA SECTION (SAMA SEPERTI SEBELUMNYA) --}}
     <section class="py-32 relative flex items-center justify-center overflow-hidden bg-[#0B0F19]">
         <div class="absolute inset-0 bg-gradient-to-r from-cyan-600/10 via-purple-600/10 to-pink-600/10 animate-pulse">

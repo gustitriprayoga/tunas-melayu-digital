@@ -11,31 +11,28 @@ class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
-        $superAdminRole = config('filament-shield.super_admin.name', 'super_admin');
-
-        // Cek apakah role sudah ada (Safety check)
-        if (!Role::where('name', $superAdminRole)->exists()) {
-            $this->command->error("Role '{$superAdminRole}' belum ditemukan. Harap jalankan ShieldSeeder terlebih dahulu!");
-            return;
+        // Pastikan role 'admin' ada
+        if (!Role::where('name', 'admin')->exists()) {
+            Role::create(['name' => 'admin', 'guard_name' => 'web']);
         }
 
         // 1. Buat User Admin
         // Menggunakan firstOrCreate agar aman dijalankan berulang kali (tidak duplikat error)
         $user = User::firstOrCreate(
-            ['email' => 'admin@tmd.com'], // Ganti dengan email login Anda
+            ['email' => 'gustitriprayoga18@gmail.com'], // Ganti dengan email login Anda
             [
                 'name' => 'Admin TMD 1', // Nama Tampilan
-                'password' => Hash::make('password'), // Ganti password saat production
+                'password' => Hash::make('Tiaku11!'), // Ganti password saat production
                 'email_verified_at' => now(),
             ]
         );
 
-        // 2. Assign Role Super Admin ke User
-        if (!$user->hasRole($superAdminRole)) {
-            $user->assignRole($superAdminRole);
-            $this->command->info("User {$user->email} berhasil diberi akses Super Admin.");
+        // 2. Assign Role Admin ke User
+        if (!$user->hasRole('admin')) {
+            $user->assignRole('admin');
+            $this->command->info("User {$user->email} berhasil diberi akses Admin.");
         } else {
-            $this->command->info("User {$user->email} sudah memiliki akses Super Admin.");
+            $this->command->info("User {$user->email} sudah memiliki akses Admin.");
         }
     }
 }

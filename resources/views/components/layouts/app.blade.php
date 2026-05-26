@@ -6,12 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Tunas Melayu Digital' }}</title>
 
+    <!-- PWA Tags -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#06b6d4">
+    <link rel="apple-touch-icon" href="{{ asset('asset/logo/logo-default.png') }}">
+
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased text-white bg-[#0f172a]">
+<body class="font-sans antialiased text-white bg-[#0f172a]" x-data="{ welcome: false }" x-init="
+    if(!localStorage.getItem('welcomed')) {
+        setTimeout(() => welcome = true, 5000);
+    }
+">
+
+    <!-- System Welcome Notification -->
+    <div x-show="welcome" 
+         x-transition:enter="transition ease-out duration-500"
+         x-transition:enter-start="translate-y-20 opacity-0 scale-90"
+         x-transition:enter-end="translate-y-0 opacity-100 scale-100"
+         class="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-[10000] w-[90%] max-w-md">
+        <div class="bg-[#0F1623]/90 backdrop-blur-xl border border-cyan-500/50 p-6 rounded-2xl shadow-[0_0_50px_rgba(6,182,212,0.3)] relative overflow-hidden group">
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 animate-pulse"></div>
+            <div class="relative z-10 flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center border border-cyan-500/40">
+                    <img src="{{ asset('asset/logo/logo-default.png') }}" class="w-8 h-8">
+                </div>
+                <div class="flex-1">
+                    <h4 class="text-cyan-400 font-mono text-[10px] uppercase tracking-widest">Incoming Transmission</h4>
+                    <p class="text-white font-bold text-sm mt-1">Selamat Datang di Tunas Melayu Digital!</p>
+                </div>
+                <button @click="welcome = false; localStorage.setItem('welcomed', true)" class="text-slate-500 hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <div class="fixed inset-0 overflow-hidden pointer-events-none -z-50">
         <div class="bg-blob bg-cyan-500 w-96 h-96 top-0 -left-20"></div>
@@ -42,7 +74,14 @@
         <livewire:components.whatsapp-float />
     @endpersist
 
-
+    {{-- PWA Service Worker Registration --}}
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
 
     {{-- COMMAND PALETTE (CTRL + K) --}}
     <div x-data="{
@@ -209,8 +248,8 @@
 
         <div class="relative z-10 flex flex-col items-center">
             <h1 class="glitch-text text-5xl md:text-7xl font-black text-white tracking-tight mb-6"
-                data-text="TUNAS DIGITAL">
-                TUNAS DIGITAL
+                data-text="TUNAS MELAYU DIGITAL">
+                TUNAS MELAYU DIGITAL
             </h1>
 
             <p class="text-cyan-500 font-mono text-sm tracking-[0.3em] uppercase animate-pulse mb-12">

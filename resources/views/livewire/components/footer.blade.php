@@ -1,5 +1,5 @@
 <?php
-$settings = \Joaopaulolndev\FilamentGeneralSettings\Models\GeneralSetting::first();
+$settings = \App\Models\GeneralSetting::first();
 ?>
 
 <footer class="bg-gray-900 text-white pt-16 pb-8">

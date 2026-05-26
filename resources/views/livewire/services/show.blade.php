@@ -256,15 +256,205 @@
             }
         }
 
-        /* Typography fix for CMS content */
-        .prose img {
-            border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Enhanced Typography for TinyMCE Content */
+        .prose {
+            color: #cbd5e1;
+        }
+
+        .prose h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .prose h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #f1f5f9;
+            line-height: 1.3;
+        }
+
+        .prose h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #06b6d4;
+            line-height: 1.4;
+        }
+
+        .prose h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #22d3ee;
+        }
+
+        .prose p {
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        .prose strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .prose em {
+            color: #e2e8f0;
+            font-style: italic;
+        }
+
+        .prose ul {
+            list-style-type: disc;
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        .prose ol {
+            list-style-type: decimal;
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        .prose li {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.75;
+            color: #cbd5e1;
+        }
+
+        .prose li::marker {
+            color: #06b6d4;
+        }
+
+        .prose a {
+            color: #06b6d4;
+            text-decoration: underline;
+            text-decoration-color: rgba(6, 182, 212, 0.3);
+            transition: all 0.3s;
+        }
+
+        .prose a:hover {
+            color: #22d3ee;
+            text-decoration-color: #22d3ee;
+        }
+
+        .prose blockquote {
+            border-left: 4px solid #06b6d4;
+            padding-left: 1.5rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 0 0.75rem 0.75rem 0;
+            font-style: italic;
+            color: #94a3b8;
+        }
+
+        .prose code {
+            background: #1e293b;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.875em;
+            color: #22d3ee;
+            font-family: 'Courier New', monospace;
         }
 
         .prose pre {
             background: #0F1623 !important;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .prose pre code {
+            background: transparent;
+            padding: 0;
+            color: #e2e8f0;
+        }
+
+        .prose img {
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 2rem 0;
+            width: 100%;
+            height: auto;
+        }
+
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .prose thead {
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .prose th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            color: #06b6d4;
+            border-bottom: 2px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .prose td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #cbd5e1;
+        }
+
+        .prose tbody tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .prose hr {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 3rem 0;
+        }
+
+        /* Text alignment classes from TinyMCE */
+        .prose [style*="text-align: center"],
+        .prose .align-center {
+            text-align: center;
+        }
+
+        .prose [style*="text-align: right"],
+        .prose .align-right {
+            text-align: right;
+        }
+
+        .prose [style*="text-align: justify"],
+        .prose .align-justify {
+            text-align: justify;
+        }
+
+        /* Color support from TinyMCE */
+        .prose [style*="color"] {
+            /* Preserve inline color styles from TinyMCE */
+        }
+
+        .prose [style*="background-color"] {
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
         }
 
         /* Hide scrollbar for clean look */
